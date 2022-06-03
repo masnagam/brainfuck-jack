@@ -175,6 +175,12 @@ class BrainfuckInterpreter {
         return;
     }
 
+    // We can improve the performance of the following methods using a stack,
+    // but it requires additional memory and a member field for its size.
+    //
+    // The following methods are naive implementations, but work properly with
+    // a few local variables.
+
     /// Move the instruction pointer to the end of the loop.
     method void gotoEndOfLoop() {
         var char op;
