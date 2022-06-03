@@ -12,7 +12,7 @@ else
 DOCKER := sudo docker
 endif
 
-JACK_FILES := $(wildcard *.jack)
+JACK_FILES := $(wildcard Brainfuck/*.jack)
 VM_FILES := $(JACK_FILES:%.jack=%.vm)
 
 RUN_OPTIONS := \
@@ -23,6 +23,9 @@ RUN_OPTIONS := \
 
 .PHONY: all
 all: run
+
+.PHONY: image
+image: image.timestamp
 
 # Just launch VMEmulator.
 # You need to manually select /proj in the container in order to execute the program after the launch.
@@ -35,7 +38,7 @@ vm: $(VM_FILES)
 
 .PHONY: clean
 clean:
-	@rm -f *.vm
+	@rm -f $(VM_FILES)
 
 .PHONY: cleanall
 cleanall: clean
@@ -43,9 +46,6 @@ cleanall: clean
 	  $(DOCKER) image rm -f $(IMAGE) >/dev/null; \
 	fi
 	@rm -f image.timestamp
-
-.PHONY: image
-image: image.timestamp
 
 image.timestamp: Dockerfile docker/setup.sh docker/entrypoint.sh
 	@$(DOCKER) build -t $(IMAGE) .

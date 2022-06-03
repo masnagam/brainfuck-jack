@@ -1,8 +1,8 @@
-# A simple Brainf*ck interpreter written in Jack
+# A simple Brainfuck interpreter written in Jack
 
-## What's Brainf*ck
+## What's Brainfuck
 
-Brainf*ck is one of famous esoteric programming languages.  You can see the
+Brainfuck is one of famous esoteric programming languages.  You can see the
 details of this programming languages in the following pages:
 
 * [Wikipedia](https://en.wikipedia.org/wiki/Brainfuck)
@@ -13,7 +13,7 @@ details of this programming languages in the following pages:
 Compile the source files by using a Jack compiler:
 
 ```shell
-sh /path/to/tools/JackCompiler.sh .
+sh /path/to/tools/JackCompiler.sh Brainfuck
 ```
 
 Launch the VM Emulator:
@@ -22,11 +22,11 @@ Launch the VM Emulator:
 sh /path/to/tools/VMEmulator.sh
 ```
 
-Then open the folder containing the compiled VM files.
+Then open the `Brainfuck` folder containing the compiled VM files.
 
 The tools can be downloaded from the official website of [nand2tetris] project.
 
-If you want to execute another Brainf*ck source code, change values of the
+If you want to execute another Brainfuck source code, change values of the
 following variables in `Main.jack`, and recompile the source files:
 
 * `code`
@@ -46,7 +46,7 @@ See `Makefile` for details.
 
 At this point, there is no convenient way to load a source code into a Jack
 program.  Of course, Hack has a keyboard chip but it take a long time to
-input a Brainf*ck source code manually without any mistake.  Above all, no one
+input a Brainfuck source code manually without any mistake.  Above all, no one
 want to do that.  That's the reason why we don't implement it at all.
 
 No useful debug features like breakpoints have not been supported at this point.
