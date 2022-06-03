@@ -78,8 +78,6 @@ class BrainfuckInterpreter {
     method void eval() {
         var char op;
 
-        let steps_ = steps_ + 1;
-
         let op = code_.charAt(ip_);
 
         if (op = 62) {  // ">"
@@ -88,6 +86,7 @@ class BrainfuckInterpreter {
                 let cp_ = 0;  // wrap-around
             }
             let ip_ = ip_ + 1;
+            let steps_ = steps_ + 1;
             return;
         }
         if (op = 60) {  // "<"
@@ -96,26 +95,31 @@ class BrainfuckInterpreter {
                 let cp_ = numCells_ - 1;  // wrap-around
             }
             let ip_ = ip_ + 1;
+            let steps_ = steps_ + 1;
             return;
         }
         if (op = 43) {  // "+"
             let cells_[cp_] = (cells_[cp_] + 1) & 255;
             let ip_ = ip_ + 1;
+            let steps_ = steps_ + 1;
             return;
         }
         if (op = 45) {  // "-"
             let cells_[cp_] = (cells_[cp_] - 1) & 255;
             let ip_ = ip_ + 1;
+            let steps_ = steps_ + 1;
             return;
         }
         if (op = 46) {  // "."
             do io_.writeChar(cells_[cp_]);
             let ip_ = ip_ + 1;
+            let steps_ = steps_ + 1;
             return;
         }
         if (op = 44) {  // ","
             let cells_[cp_] = io_.readChar();
             let ip_ = ip_ + 1;
+            let steps_ = steps_ + 1;
             return;
         }
         if (op = 91) {  // "["
@@ -123,10 +127,12 @@ class BrainfuckInterpreter {
                 do gotoEndOfLoop();
             }
             let ip_ = ip_ + 1;
+            let steps_ = steps_ + 1;
             return;
         }
         if (op = 93) {  // "]"
             do gotoStartOfLoop();
+            let steps_ = steps_ + 1;
             return;
         }
 
