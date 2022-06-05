@@ -17,8 +17,7 @@ class BrainfuckIO {
         return;
     }
 
-    /// Read a single character from the keyboard device, without printing the
-    /// character on the screen.
+    /// Read a single character from the keyboard device.
     method char readChar() {
         var char c;
         do BrainfuckIO.clearRow(22);

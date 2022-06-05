@@ -2,7 +2,7 @@ set -eu
 
 PROGNAME=$(basename $0)
 
-DELAY=200  # for safe loading
+DELAY=5
 
 INTERVAL=100
 NUM_CELLS=32
@@ -32,9 +32,7 @@ ARGUMENTS:
     specified.
 
 NOTES:
-  The transfer speed of this program is 5 characters per second.  It's very
-  slow, but a faster transfer than the current speed sometimes fails to read a
-  keycode.
+  The current transfer speed of this program is 200 characters per second.
 EOF
   exit 0
 }

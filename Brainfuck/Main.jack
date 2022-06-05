@@ -3,7 +3,7 @@ class Main {
         var BrainfuckProgram program;
         var BrainfuckConsole console;
 
-        let program = BrainfuckProgram.load();
+        let program = BrainfuckProgramLoader.load();
         let console = BrainfuckConsole.new();
         do console.run(program);
 

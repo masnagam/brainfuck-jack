@@ -2,51 +2,6 @@ class BrainfuckProgram {
     field int interval_, numCells_;
     field String code_;
 
-    function BrainfuckProgram load() {
-        var int interval, numCells, codeLen, i;
-        var String code, prompt;
-        var BrainfuckProgram prog;
-
-        let prompt = "Interval in milli-seconds: ";
-        let interval = Keyboard.readInt(prompt);
-        do prompt.dispose();
-        if (interval < 0) {
-            do Error.output("Must be a non-negative integer");
-        }
-
-        let prompt = "#Cells (<=80): ";
-        let numCells = Keyboard.readInt(prompt);
-        do prompt.dispose();
-        if (numCells > 80) {
-            do Error.output("Too many cells");
-        }
-        if (~(numCells > 0)) {
-            do Error.output("Must be a positive integer");
-        }
-
-        let prompt = "#Chars in program (<=512): ";
-        let codeLen = Keyboard.readInt(prompt);
-        do prompt.dispose();
-        if (codeLen > 512) {
-            do Error.output("Too long program");
-        }
-        if (~(codeLen > 0)) {
-            do Error.output("Must be a positive integer");
-        }
-
-        let prompt = "Program: ";
-        do Output.printString(prompt);
-        do prompt.dispose();
-        let code = String.new(codeLen);
-        let i = 0;
-        while (i < codeLen) {
-            do code.appendChar(Keyboard.readChar());
-            let i = i + 1;
-        }
-
-        return BrainfuckProgram.new(interval, numCells, code);
-    }
-
     constructor BrainfuckProgram new(int interval, int numCells, String code) {
         let interval_ = interval;
         let numCells_ = numCells;
