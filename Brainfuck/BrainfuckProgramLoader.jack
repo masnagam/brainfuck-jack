@@ -11,14 +11,14 @@ class BrainfuckProgramLoader {
         let numCells = BrainfuckProgramLoader.readUint(prompt);
         do prompt.dispose();
         if (numCells > 80) {
-            do Error.output("Too many cells");
+            do Error.output("BrainfuckProgramLoader.load: Too many cells");
         }
 
         let prompt = "#Chars in program (<=512): ";
         let codeLen = BrainfuckProgramLoader.readUint(prompt);
         do prompt.dispose();
         if (codeLen > 512) {
-            do Error.output("Too long program");
+            do Error.output("BrainfuckProgramLoader.load: Too long program");
         }
 
         let prompt = "Program: ";

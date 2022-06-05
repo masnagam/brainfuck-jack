@@ -58,7 +58,8 @@ class BrainfuckInterpreter {
     /// Get the value of the i-th cell.
     method int cellAt(int i) {
         if ((i < 0) | ~(i < numCells_)) {
-            do Error.output("Cell reference out of range");
+            do Error.output(
+                "BrainfuckInterpreter.cellAt: Cell reference out of range");
         }
         return cells_[i];
     }
