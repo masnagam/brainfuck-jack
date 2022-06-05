@@ -31,11 +31,11 @@ the VM Emulator using the keyboard:
 * The number of cells to allocate
 * A Brainfuck program
 
-For convenient, we provides a helper script named `docker/transfer.sh`:
+For convenient, we provides a helper script named `scripts/transfer.sh`:
 
 ```shell
-# `docker/transfer.sh -h` displays the usage.
-sh docker/transfer.sh
+# `sh scripts/transfer.sh -h` displays the usage.
+sh scripts/transfer.sh
 ```
 
 The tools can be downloaded from the official website of [nand2tetris] project.

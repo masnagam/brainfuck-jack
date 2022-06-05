@@ -4,6 +4,6 @@ RUN sh -eux /setup.sh
 WORKDIR /proj
 ENV LANG en_US.UTF-8
 ENV TZ Asia/Tokyo
-COPY /docker/entrypoint.sh /docker/transfer.sh /
+COPY /docker/entrypoint.sh /
 ENTRYPOINT ["sh", "/entrypoint.sh"]
 CMD []

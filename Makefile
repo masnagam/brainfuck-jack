@@ -53,7 +53,7 @@ stop:
 # make transfer INTERVAL=0 NUM_CELLS=16 PROGRAM=examples/shortest_hello_world.bf
 .PHONY: transfer
 transfer:
-	@$(DOCKER) exec -it $(CONTAINER_NAME) sh /transfer.sh -i $(INTERVAL) -n $(NUM_CELLS) $(PROGRAM)
+	@$(DOCKER) exec -it $(CONTAINER_NAME) sh $(PROJ)/scripts/transfer.sh -i $(INTERVAL) -n $(NUM_CELLS) $(PROGRAM)
 
 .PHONY: image
 image: image.timestamp
@@ -69,7 +69,7 @@ cleanall: clean
 	fi
 	@rm -f image.timestamp
 
-image.timestamp: Dockerfile docker/setup.sh docker/entrypoint.sh docker/transfer.sh
+image.timestamp: Dockerfile docker/setup.sh docker/entrypoint.sh
 	@$(DOCKER) build -t $(IMAGE) .
 	@touch $@
 
