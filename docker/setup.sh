@@ -5,6 +5,10 @@ apt-get update
 apt-get install -y --no-install-recommends ca-certificates curl unzip
 apt-get install -y --no-install-recommends default-jre
 
+# Used in transfer-program.sh for sending key events to the VMEmulator in order to load a Brainfuck
+# program.
+apt-get install -y --no-install-recommends xdotool
+
 ARCHIVE=$(mktemp)
 trap "rm $ARCHIVE" EXIT
 

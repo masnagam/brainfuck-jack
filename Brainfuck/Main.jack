@@ -1,49 +1,16 @@
 class Main {
     function void main() {
-        var String code;
-        var int outputSize, interval, numCells;
+        var BrainfuckProgram program;
         var BrainfuckConsole console;
 
-        // The well-known "Hello, World!" program, took from
-        // https://esolangs.org/wiki/Brainfuck.
-        //
-        // The total steps is 986.  So, an execution with 100ms interal will
-        // take about 100s.
-        let code = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
-
-        // Change following values according to the code to be executed.
-        let interval = 100;  // in milli-seconds
-        let numCells = 32;
-
-        // Another sample is the shortest known "Hello, World!" program written
-        // by KSab, also took from https://esolangs.org/wiki/Brainfuck.
-        //
-        // This program takes 17896 steps for execution.  So, we strongly
-        // recommend to set `interval` 0 like below.
-        //let code = "+[-->-[>>+>-----<<]<--<---]>-.>>>+.>>..+++[.>]<<<<.+++.------.<<-.>>>>+.";
-        //let interval = 0;
-        //let numCells = 32;
-
-        // Echo input characters.
-        //let code = ",[.,]";
-        //let interval = 100;
-        //let numCells = 32;
-
-        let console = BrainfuckConsole.new(interval);
-        do console.run(numCells, code);
+        let program = BrainfuckProgram.load();
+        let console = BrainfuckConsole.new();
+        do console.run(program);
 
         // Practically, we don't need to dispose any objects allocated in the
         // heap memory because the program is going to terminate soon.
-
         do console.dispose();
-
-        // In many programming languages, we don't have to manually dispose
-        // String objects created from string literals.  However, we have to
-        // dispose those manually in any Jack program in order to avoid memory
-        // leaks.  A string literal creates a String object in the heap and
-        // the reference implementation of the Jack compiler does NOT generate
-        // any code to dispose it automagically.
-        do code.dispose();
+        do program.dispose();
 
         return;
     }

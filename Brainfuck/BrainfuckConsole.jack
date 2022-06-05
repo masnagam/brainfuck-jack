@@ -5,19 +5,12 @@ class BrainfuckConsole {
     field BrainfuckInterpreter interp_;
     field int cellViewRow_, outputViewRow_;
     field int prevIP_;
-    field int interval_;
 
     /// Create a console object.
-    ///
-    /// interval
-    ///   The interval time in milli-seconds for each evaluation of an
-    ///   instruction in the source code.
-    ///
-    constructor BrainfuckConsole new(int interval) {
+    constructor BrainfuckConsole new() {
         let io_ = 0;
         let interp_ = 0;
         let prevIP_ = -1;
-        let interval_ = interval;
         return this;
     }
 
@@ -28,17 +21,17 @@ class BrainfuckConsole {
 
     /// Execute a source code in an interpreter.
     ///
-    /// numCells
-    ///   The number of cells allocated.
+    /// program
+    ///   A Brainfuck program to execute.
     ///
-    /// code
-    ///   The source code to execute.
-    ///
-    method void run(int numCells, String code) {
-        do computeViewPositions(numCells, code);
+    method void run(BrainfuckProgram program) {
+        do Screen.clearScreen();
+
+        do computeViewPositions(program.numCells(), program.code());
 
         let io_ = BrainfuckIO.new(outputViewRow_ + 1);
-        let interp_ = BrainfuckInterpreter.new(io_, numCells, code);
+        let interp_ = BrainfuckInterpreter.new(
+            io_, program.numCells(), program.code());
 
         do printViewLabels();
         do printCode();
@@ -46,7 +39,7 @@ class BrainfuckConsole {
         while (interp_.isRunning()) {
             do updateViews();
             do interp_.eval();
-            do Sys.wait(interval_);
+            do Sys.wait(program.interval());
         }
 
         do updateViews();

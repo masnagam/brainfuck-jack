@@ -5,10 +5,13 @@
 ///
 ///   do Output.printString("message");
 ///
-/// Normally, we have to use a variable to keep the string object in order to
-/// dispose it after use.
+/// In many programming languages, we don't have to manually dispose String
+/// objects created from string literals.  However, we have to dispose those
+/// manually in any Jack program in order to avoid memory leaks.  A string
+/// literal creates a String object in the heap and the reference implementation
+/// of the Jack compiler does NOT generate any code to dispose it automagically.
 ///
-/// However, we don't have to do that in Error.output(). Because it calls
+/// However, we don't have to do that in Error.output().  Because it calls
 /// Sys.halt() just after printing a message for the error.
 class Error {
     /// Output an error message in the last line on the screen.

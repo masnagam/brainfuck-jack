@@ -24,14 +24,21 @@ sh /path/to/tools/VMEmulator.sh
 
 Then open the `Brainfuck` folder containing the compiled VM files.
 
+After starting the interpreter, you have to input the following parameters on
+the VM Emulator using the keyboard:
+
+* Interval
+* The number of cells to allocate
+* A Brainfuck program
+
+For convenient, we provides a helper script named `docker/transfer.sh`:
+
+```shell
+# `docker/transfer.sh -h` displays the usage.
+sh docker/transfer.sh
+```
+
 The tools can be downloaded from the official website of [nand2tetris] project.
-
-If you want to execute another Brainfuck source code, change values of the
-following variables in `Main.jack`, and recompile the source files:
-
-* `code`
-* `interval`
-* `numCells`
 
 ### For docker users
 
@@ -40,14 +47,16 @@ command will build a Docker image named `$USER/nand2tetris`, compile Jack files
 into VM files and then execute the VM Emulator in a container created from the
 Docker image.
 
+After starting the interpreter, run the following command on a terminal running
+on the Docker host machine:
+
+```shell
+make transfer INTERVAL=0 NUM_CELLS=16 PROGRAM=examples/shortest_hello_world.bf
+```
+
 See `Makefile` for details.
 
 ## TODO
-
-At this point, there is no convenient way to load a source code into a Jack
-program.  Of course, Hack has a keyboard chip but it take a long time to
-input a Brainfuck source code manually without any mistake.  Above all, no one
-want to do that.  That's the reason why we don't implement it at all.
 
 No useful debug features like breakpoints have not been supported at this point.
 But, we think that some of the debug features can be implemented with little
