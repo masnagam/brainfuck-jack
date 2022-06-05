@@ -23,13 +23,6 @@ endif
 JACK_FILES := $(wildcard Brainfuck/*.jack)
 VM_FILES := $(JACK_FILES:%.jack=%.vm)
 
-RUN_OPTIONS := \
-  --name=$(CONTAINER_NAME) \
-  --network=host \
-  -e DISPLAY=$(DISPLAY) \
-  -e XAUTHORITY=/tmp/.Xauthority \
-  -v $(XAUTHORITY):/tmp/.Xauthority
-
 # Targets
 
 .PHONY: all
@@ -40,7 +33,15 @@ all: run
 # order to execute the interpreter after the launch.
 .PHONY: run
 run: vm
-	@$(DOCKER) run -d --rm --init -v $(shell pwd):$(PROJ) $(RUN_OPTIONS) $(IMAGE) sh $(VMEMULATOR)
+	@$(DOCKER) run -d --rm --init \
+	  --name=$(CONTAINER_NAME) \
+	  --network=host \
+	  -e DISPLAY=$(DISPLAY) \
+	  -e XAUTHORITY=/tmp/.Xauthority \
+	  -v $(XAUTHORITY):/tmp/.Xauthority \
+	  -v $(shell pwd):$(PROJ) $(RUN_OPTIONS) \
+	  $(IMAGE) \
+	  sh $(VMEMULATOR)
 
 .PHONY: vm
 vm: $(VM_FILES)
@@ -53,7 +54,8 @@ stop:
 # make transfer INTERVAL=0 NUM_CELLS=16 PROGRAM=examples/shortest_hello_world.bf
 .PHONY: transfer
 transfer:
-	@$(DOCKER) exec -it $(CONTAINER_NAME) sh $(PROJ)/scripts/transfer.sh -i $(INTERVAL) -n $(NUM_CELLS) $(PROGRAM)
+	@$(DOCKER) exec -it $(CONTAINER_NAME) \
+	  sh $(PROJ)/scripts/transfer.sh -i $(INTERVAL) -n $(NUM_CELLS) $(PROGRAM)
 
 .PHONY: image
 image: image.timestamp
@@ -74,4 +76,5 @@ image.timestamp: Dockerfile docker/setup.sh docker/entrypoint.sh
 	@touch $@
 
 %.vm: %.jack image.timestamp
-	@$(DOCKER) run --rm --init -v $(shell pwd):$(PROJ) $(IMAGE) sh $(COMPILER) $<
+	@$(DOCKER) run --rm --init -v $(shell pwd):$(PROJ) $(IMAGE) \
+	  sh $(COMPILER) $<
