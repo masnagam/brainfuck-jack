@@ -1,6 +1,8 @@
-# A simple Brainfuck interpreter written in Jack
+# brainfuck-jack
 
-## What's Brainfuck
+> A simple Brainfuck interpreter written in Jack
+
+## What is Brainfuck?
 
 Brainfuck is one of famous esoteric programming languages.  You can see the
 details of this programming languages in the following pages:
@@ -8,9 +10,18 @@ details of this programming languages in the following pages:
 * [Wikipedia](https://en.wikipedia.org/wiki/Brainfuck)
 * [Esolang](https://esolangs.org/wiki/Brainfuck)
 
+## What is Jack?
+
+Jack is a simple high-level programming language supporting an object-oriented
+programming.  Jack was designed for the [Nand2Tetris] courses as one of the
+teaching materials.
+
+Tools needed for compiling and executing this project can be downloaded from
+the official website.
+
 ## How to run
 
-Compile the source files by using a Jack compiler:
+Compile the source files in the `Brainfuck` folder by using a Jack compiler:
 
 ```shell
 sh /path/to/tools/JackCompiler.sh Brainfuck
@@ -38,14 +49,14 @@ For convenient, we provides a helper script named `scripts/transfer.sh`:
 sh scripts/transfer.sh
 ```
 
-The tools can be downloaded from the official website of [nand2tetris] project.
-
 ### For docker users
 
-A docker user can execute the program by simply running `make`.  The `make`
-command will build a Docker image named `$USER/nand2tetris`, compile Jack files
-into VM files and then execute the VM Emulator in a container created from the
-Docker image.
+A docker user can compile the Jack files in the `Brainfuck` folder and launch
+the VM Emulator without downloading the tools from the Nand2Tetris official
+website.  Simply running `make` will build a Docker image named
+`$USER/nand2tetris` which contains all tools needed for executing the
+interpreter, compile the Jack files and launch the VM Emulator in a container
+created from the Docker image.
 
 After starting the interpreter, run the following command on a terminal running
 on the Docker host machine:
@@ -59,8 +70,7 @@ See `Makefile` for details.
 ## TODO
 
 No useful debug features like breakpoints have not been supported at this point.
-But, we think that some of the debug features can be implemented with little
-effort.
+But, we think that some of them can be implemented with a small effort.
 
 ## License
 
@@ -77,6 +87,6 @@ Unless you explicitly state otherwise, any contribution intentionally submitted
 for inclusion in this project by you, as defined in the Apache-2.0 license,
 shall be dual licensed as above, without any additional terms or conditions.
 
-[nand2tetris]: https://www.nand2tetris.org/
+[Nand2Tetris]: https://www.nand2tetris.org/
 [LICENSE-APACHE]: ./LICENSE-APACHE
 [LICENSE-MIT]: ./LICENSE-MIT

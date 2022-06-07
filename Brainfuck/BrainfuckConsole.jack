@@ -1,4 +1,4 @@
-/// This class executes an Brainf*ck interpreter and manages views to display
+/// This class executes an Brainfuck interpreter and manages views to display
 /// the execution state of the interpreter graphically.
 class BrainfuckConsole {
     field BrainfuckIO io_;
